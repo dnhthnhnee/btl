@@ -1,0 +1,22 @@
+{
+  "name": "btl",
+  "version": "1.0.0",
+  "description": "fullstack web",
+  "main": "web.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dnhthnhnee/btl.git"
+  },
+  "keywords": [
+    "sth"
+  ],
+  "author": "group sth",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dnhthnhnee/btl/issues"
+  },
+  "homepage": "https://github.com/dnhthnhnee/btl#readme"
+}
