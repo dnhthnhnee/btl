@@ -1,34 +1,25 @@
 {
   "name": "btl",
   "version": "1.0.0",
-  "description": "fullstack web",
+  "description": "",
   "main": "web.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "npx tailwindcss -i ./src/input.css -o ./public/asset/css/style.css --watch"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dnhthnhnee/btl.git"
+    "url": "https://github.com/dnhthnhnee/btl"
   },
   "keywords": [
-    "sth"
+    "assignment"
   ],
-  "author": "group sth",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/dnhthnhnee/btl/issues"
-  },
-  "homepage": "https://github.com/dnhthnhnee/btl#readme",
-  "dependencies": {
-    "body-parser": "^1.20.2",
-    "dotenv": "^16.4.5",
-    "ejs": "^3.1.9",
-    "express": "^4.19.2"
-  },
   "devDependencies": {
-    "@babel/core": "^7.24.4",
-    "@babel/node": "^7.23.9",
-    "@babel/preset-env": "^7.24.4",
-    "nodemon": "^3.1.0"
+    "tailwindcss": "^3.4.3"
+  },
+  "dependencies": {
+    "firebase": "^10.10.0"
   }
 }
