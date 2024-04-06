@@ -1,0 +1,47 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #9fa9e6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.register {
+  width: 300px;
+  height: 300px;
+  border: 1px solid grey;
+  border-radius: 10px;
+  text-align: center;
+  background-color: white;
+}
+
+h2 {
+  color: black;
+  font-family: sans-serif;
+}
+
+.register input {
+  width: 200px;
+  height: 40px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid grey;
+  padding-left: 20px;
+}
+
+.register button {
+  width: 200px;
+  height: 40px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: green;
+  color: white;
+  width: 120px;
+}
+
+.register button:hover {
+  background-color: #45a049;
+}
