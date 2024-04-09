@@ -1,6 +1,10 @@
 body {
   font-family: Arial, sans-serif;
   background-color: #ccc;
+  background-image: url(https://muanhanhhon.com/wp-content/uploads/2019/09/benh-vien.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 header {
   text-align: center;
