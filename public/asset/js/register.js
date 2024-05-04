@@ -1,13 +1,14 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js'
-import { getAuth,  onAuthStateChanged, signInWithEmailAndPassword  } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js'
+import { getAuth,  onAuthStateChanged, signInWithEmailAndPassword, signOut  } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js'
 import {  getFirestore, doc, setDoc, deleteDoc, getDoc, getDocs, collection, writeBatch  } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js'
 import firebaseConfig from "./fconfig.mjs";
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app)
-var CurrentUser = {};
-
+let CurrentUser = {
+  patientID: "",
+};
 class Person {
     constructor(){
         this.name = "";
@@ -40,9 +41,15 @@ $("#reg").on("click", async function(){
   var Email = $("#user-email").val();
   var Password = $("#password").val();
   console.log(Email +" "+Password);
-  SignIn(Email, Password);
+  await SignIn(Email, Password);
+  await checkAuthstate("");
+  console.log(CurrentUser.uid);
+});
+
+$("#logout").on("click", async function(){
+  await SignOut();
   const CurrentUser = await checkAuthstate();
-  console.log(CurrentUser);
+  console.log(CurrentUser.getAuth.uid);
 });
 
 function checkAuthstate(){
@@ -50,6 +57,8 @@ function checkAuthstate(){
       onAuthStateChanged(auth, (user) => {
           if (user) {
               // User is signed in
+              const uid = user.uid;
+              CurrentUser = user;
               console.log(user.email + " " + "has logged in");
               //changeDocumentName("VBriU3S0qlhkoopSpOqOcyIHHBs1", user.uid);
               //changeCollectionName("VBriU3S0qlhkoopSpOqOcyIHHBs1", user.uid);
@@ -61,20 +70,30 @@ function checkAuthstate(){
       });
   });
 }
-function SignIn(email, password){
-    signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+async function SignIn(email, password) {
+  return signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
       // ...
+      return user;
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log(errorCode);
-      console.log(errorMessage);
+      // ...
+      throw error; // or return something else
     });
-  
 }
+
+function SignOut(){
+    return signOut(auth).then(() => {
+      // Sign-out successful.
+    }).catch((error) => {
+      // An error happened.
+    });
+}
+
 async function changeDocumentName(oldId, newId) {
   // Get a reference to the old and new documents
   const oldDocRef = doc(db, 'CBYT', 'Doctor', 'Khoa A',  oldId);
@@ -115,5 +134,5 @@ async function changeCollectionName(oldName, newName) {
 }
 
 
-export {CurrentUser};
+export { CurrentUser, checkAuthstate };
   

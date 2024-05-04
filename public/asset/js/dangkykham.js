@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js'
-import { getFirestore, addDoc, doc, setDoc, updateDoc, collection, connectFirestoreEmulator, getDocs, getDoc } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js'
+import { getFirestore, addDoc, doc, setDoc, updateDoc, collection, connectFirestoreEmulator, getDocs, getDoc, query, where } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js'
 import firebaseConfig from "./fconfig.mjs";
 
 const app = initializeApp(firebaseConfig);
@@ -35,7 +35,8 @@ $("#Send").on("click", async function(){
 
     var doctorIds = [];
     //alert(temp.getAt('Appt'));
-    const querySnapshot =  await getDocs(collection(db, "CBYT", "Doctor", temp.getAt('Dept') ));
+    const q = query(collection(db, 'CBYT'), where("Khoa", '==', temp.getAt('Dept')));
+    const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
         doctorIds.push(doc.id);
     });

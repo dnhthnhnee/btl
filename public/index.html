@@ -6,6 +6,31 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <title>BỆNH VIỆN LTNC</title>
 <link rel="stylesheet" href="./asset/css/style.css">
+<style>
+  Button:hover {
+      background-color: #5B8E2A; /* Change to the color you want when hovered */
+      color: white;
+  }
+  .Shop {
+      left: 744px;
+      top: 45.50px;
+      position: absolute;
+      text-align: center;
+      color: black;
+      font-size: 16px;
+      font-family: Inter;
+      font-weight: 400;
+      line-height: 20.80px;
+      word-wrap: break-word;
+      border: 8px white;
+      border-radius: 8px;
+      overflow: hidden;
+  }
+  .Shop:hover {
+      background-color: #426B1F;
+      color: white;
+  }
+</style>
 </head>
 <body>
 <div class="container">
@@ -17,7 +42,7 @@
     <aside>
       <nav>
         <ul>
-          <li><a href="#theo-doi-benh-nhan">Theo dõi bệnh nhân</a></li>
+          <li><a href="PatientManagement.html">Theo dõi bệnh nhân</a></li>
           <li><a href="#lich-trinh-bac-si">Lịch trình bác sĩ</a></li>
           <li><a href="cosovatchat.html">Cơ sở vật chất</a></li>
           <li><a href="dangkykham.html">Đăng ký khám bệnh</a></li>
@@ -39,6 +64,7 @@
     </section>
   </div>
 </div>
+<button class="Shop" type="button" id="logout">Shop</button>
 <script type="module" src="./asset/js/register.js"></script>
 </body>
 </html>
