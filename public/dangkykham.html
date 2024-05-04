@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./asset/css/style.css"/>
+    <title>Đăng Ký lịch Khám Chữa Bệnh</title>
+  </head>
+  <body>
+    <div class="container">
+    <main>
+    <header>
+      <h1>Đăng Ký lịch Khám Chữa Bệnh</h1>
+    </header>
+      <div class="center">
+        <h3>Vui lòng điền thông tin đăng ký khám bệnh</h3>
+      </div>
+
+      <form>
+        <table>
+          <tr>
+            <td>Họ và tên</td>
+            <td><input type="text" name="txtFullName" id="name" autocomplete="username" /></td>
+          </tr>
+
+          <tr>
+            <td>Email</td>
+            <td><input type="email" name="txtEmail" id="email" autocomplete="email" required /></td>
+          </tr>
+
+          <tr>
+            <td>Ngày Sinh</td>
+            <td><input type="date" name="txtDateOfBirth" id="birth" required /></td>
+          </tr>
+
+          <tr>
+            <td>Số điện thoại</td>
+            <td><input type="tel" name="txtPhone" id="phonum" required /></td>
+          </tr>
+
+          <tr>
+            <td>Giới tính</td>
+            <td>
+              <select name="txtGender" id="Gerne" required>
+                <option disabled selected hidden>Giới tính</option>
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+                <option value="Khác">Khác</option>
+              </select>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Địa chỉ</td>
+            <td>
+              <textarea
+                name="txtAddress"
+                cols="30"
+                rows="1"
+                id="addr"
+                required
+              ></textarea>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Chuyên khoa</td>
+            <td>
+              <select name="txtSpecialty" id="khoa">
+              <option disabled selected hidden>Khoa</option>
+              <option value="Khoa A">Khoa A</option>
+              <option value="Khoa B">Khoa B</option>
+              <option value="Khoa C">Khoa C</option>
+            </select>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Ngày khám</td>
+            <td><input type="date" id="ngaykham" name="txtDateForCheckup" required /></td>
+          </tr>
+
+          <tr>
+            <td>Giờ khám</td>
+            <td>
+              <select name="txtDateToCheck" id="buoi" required>
+                <option disabled selected hidden>Khung giờ</option> 
+                <option disabled>Sáng</option> 
+                <option value="T07:30">07:30 - 08:00</option>
+                <option value="T08:00">08:00 - 08:30</option>
+                <option value="T08:30">08:30 - 09:00</option>
+                <option value="T09:00">09:00 - 09:30</option>
+                <option value="T09:30">09:30 - 10:00</option>
+                <option value="T10:00">10:00 - 10:30</option>
+                <option value="T10:30">10:30 - 11:00</option>
+                <option disabled>Chiều</option> 
+                <option value="T13:00">13:00 - 13:30</option>
+                <option value="T13:30">13:30 - 14:00</option>
+                <option value="T14:00">14:00 - 14:30</option>
+                <option value="T14:30">14:30 - 15:00</option>
+                <option value="T15:00">15:00 - 15:30</option>
+                <option value="T15:30">15:30 - 16:00</option>
+                <option value="T16:00">16:00 - 16:30</option>
+              </select>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Triệu Chứng</td>
+            <td>
+              <textarea
+                name="Triệu Chứng"
+                cols="60"
+                rows="5"
+                id="sick"
+                required
+              ></textarea>
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan="2" class="submit-btn">
+              <input  id = "Send" type="button" value="Gửi" />
+            </td>
+          </tr>
+
+        </table>
+      </form>
+    </main>
+  </div>
+      <script type="module" src="./asset/js/dangkykham.js"></script>
+      <script type="module" src="./asset/js/fill.js"></script>  
+  </body>
+</html>
