@@ -1,0 +1,14 @@
+    events: [
+      {
+        title: 'All Day Event',
+        start: today
+      },{
+        title: 'Conference',
+        start: today+'T16:00',
+        end: today+'T16:30'
+      },{
+        title: 'Conference1',
+        start: today+'T16:15',
+        end: today+'T16:40' 
+      }
+    ]
