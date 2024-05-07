@@ -57,13 +57,13 @@ document.addEventListener('DOMContentLoaded', async function() {
     unselectAuto: true
   });
   calendar.render();
-  const querySnapshot =  await getDocs(collection(db, "calendar", "Khoa A","VjCSIDPcycO5oWGikPA11wtbwxL2"));
+  const querySnapshot =  await getDocs(collection(db, "calendar", "Khoa A","UB0m2NBUFqaWYw5KR1VYT7Zq1Lm1"));
   querySnapshot.forEach((doc) => {
     time.push(doc.id);
   });
   var events;
   for (let i = 0; i < time.length; i++) {
-    const docRef = doc(db, "calendar", "Khoa A","VjCSIDPcycO5oWGikPA11wtbwxL2",time[i]);
+    const docRef = doc(db, "calendar", "Khoa A","UB0m2NBUFqaWYw5KR1VYT7Zq1Lm1",time[i]);
     const docSnap = await getDoc(docRef);
     var day = docSnap.data()["Appt"].toDate().toISOString();
     day = day.slice(0,16);
