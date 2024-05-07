@@ -1,37 +1,125 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js'
-import { getAuth,  onAuthStateChanged, signInWithEmailAndPassword  } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js'
-import {  getFirestore, doc, setDoc, deleteDoc, getDoc, getDocs, collection, writeBatch  } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js'
 import firebaseConfig from "./fconfig.mjs";
-import { CurrentUser } from '../homepage/register.js';
-import { Calendar as FullCalendar } from 'https://cdn.skypack.dev/@fullcalendar/core';
-import dayGridPlugin from 'https://cdn.skypack.dev/@fullcalendar/daygrid';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js'
+import { getFirestore, doc, getDocs, getDoc, collection, orderBy, query } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js'
+import { CurrentUser, checkAuthstate } from './register.js';
+
+
+
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const auth = getAuth(app)
+var time = [];
 
-$(document).ready(function() {
-    const calendarEl = document.getElementById('calendar');
-    const calendar = new FullCalendar(calendarEl, {
-        plugins: [dayGridPlugin],
-        initialView: 'dayGridMonth',
-        events: [
-            {
-                title: 'Event 1',
-                start: '2024-04-01'
-            },
-            {
-                title: 'Event 2',
-                start: '2022-12-05',
-                end: '2022-12-08'
-            },
-            {
-                title: 'Event 3',
-                start: '2022-12-09T12:30:00',
-                allDay: false // will make the time show
+
+
+class event {
+    constructor(appt, name, sex, sick, birth) {
+        let obj = {
+            start: appt,
+            end: appt.slice(0, -2) + '30',//30 phút sau là hết khám
+            title: "Khám bệnh nhân " + name,
+            sex: sex,
+            sick: sick,
+            birth: birth
+        };
+
+        this.getdata = function () {
+            return obj;
+        };
+
+        this.setProperty = function (property, value) {
+            if (obj.hasOwnProperty(property)) {
+                obj[property] = value;
+            } else {
+                console.error(`Thuộc tính '${property}' không tồn tại`);
             }
-            // other events here...
-        ]
+        };
+    }
+}
+
+document.addEventListener('DOMContentLoaded', async function () {
+    await checkAuthstate().then(() => {
+        console.log(CurrentUser.uid); // Now currentUser should be available
+    });
+    let fal = {};
+    const docRef = doc(db, "CBYT", CurrentUser.uid);
+    const docSnap = await getDoc(docRef);
+    console.log(docRef.id);
+
+    if (docSnap.exists()) {
+        fal = docSnap.data()["Khoa"];
+        console.log(fal);
+    }
+    var calendarEl = document.getElementById('calendar');
+    var today = new Date().toISOString().substring(0, 10);
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        initialDate: today,
+        headerToolbar: {
+            left: 'prevYear,prev,next,nextYear today',
+            center: 'title',
+            right: 'dayGridMonth,dayGridWeek'
+        },
+        eventClick: function (info) {
+            openPopup(info);
+        },
+        events: [],
+        selectable: true,
+        eventDisplay: 'list-item',
+        dateClick: function (info) {
+            calendar.changeView('list', info.startStr);
+        },
+        select: function (info) {
+            calendar.changeView('list', info.startStr);
+        },
+        unselectAuto: true
     });
     calendar.render();
+    const querySnapshot = await getDocs(collection(db, "calendar", fal, CurrentUser.uid));
+    querySnapshot.forEach((doc) => {
+        time.push(doc.id);
+    });
+    var events;
+    for (let i = 0; i < time.length; i++) {
+        const docRef = doc(db, "calendar", fal, CurrentUser.uid, time[i]);
+        const docSnap = await getDoc(docRef);
+        //var day = docSnap.data()["Appt"].toDate();
+        // var dayUTC = new Date(day.toISOString());
+        // var dayGMT7 = new Date(dayUTC.getTime() + (7 * 60 * 60 * 1000)).toISOString();
+        //dayGMT7 = dayGMT7.slice(0, 16);
+        var day = docSnap.data()["Appt"].toDate().toISOString();
+        day = day.slice(0, 16);
+        var birth = docSnap.data()["Birth"].toDate().toISOString();
+        birth = birth.slice(0, 16);
+        //console.log(dayGMT7);
+        //events = new event(dayGMT7, docSnap.data()["Name"], docSnap.data()["Sex"], docSnap.data()["Sick"], birth);
+        events = new event(day, docSnap.data()["Name"], docSnap.data()["Sex"], docSnap.data()["Sick"], birth);
+        calendar.addEvent(events.getdata());
+    }
 });
+function openPopup(info) {
+    var ti = document.getElementById("title");
+    ti.innerHTML = info.event.title;
+    var popup = document.getElementById("popup");
+    popup.style.display = "block";
+    var birth = new Date(info.event.extendedProps.birth);
+    var m = (birth.getMonth() + 1 < 10) ? '0' + (birth.getMonth() + 1).toString() : (birth.getMonth() + 1).toString();
+    var d = (birth.getDate() < 10) ? '0' + (birth.getDate()).toString() : (birth.getDate()).toString();
+    var popupContent = document.getElementById("popup-content");
+    popupContent.innerHTML =
+        "<p>Giới tính: " +
+        info.event.extendedProps.sex +
+        "</p>" +
+        "<p>Sinh nhật: " +
+        d + '/' + m + '/' + birth.getFullYear() +
+        "</p>" +
+        "<p>Triệu chứng: " +
+        info.event.extendedProps.sick +
+        "</p>";
+}
+window.onclick = function (event) {
+    var popup = document.getElementById("popup");
+    if (event.target == popup) {
+        popup.style.display = "none";
+    }
+};

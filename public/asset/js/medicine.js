@@ -5,9 +5,9 @@ import firebaseConfig from "./fconfig.mjs";
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-getDocs(collection(db, "thuoc")).then((querySnapshot) => {
-    let dataHtml ='';
-    querySnapshot.forEach((doc) => {
+await getDocs(collection(db, "thuoc")).then(async (querySnapshot) => {
+    let dataHtml = '';
+    await querySnapshot.forEach((doc) => {
         dataHtml += `<div>
         <h3>${doc.id}</h3>
         <button class="doc-button" data-doc-id="${doc.id}">Chi tiết</button>
@@ -17,4 +17,9 @@ getDocs(collection(db, "thuoc")).then((querySnapshot) => {
 
     // Append the data HTML to the main-content div
     mainContent.innerHTML = dataHtml;
+    $(".doc-button").on("click", function () {
+        const docId = $(this).attr("data-doc-id");
+        alert(docId);
+        window.location.href = `DisplayMedicine.html?docId=${docId}`;
+    });
 });

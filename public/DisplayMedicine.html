@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./asset/css/style.css" />
+    <script type="module" src="./asset/js/register.js"></script>
+    <script type="module" src="./asset/js/displayMedicine.js"></script>
+    <title>Cơ sở vật chất</title>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Thuốc</h1>
+        </header>
+        <div class="content6" style="overflow: auto;">
+        </div>
+    </div>
+    <div id="quantityInput" style="position: absolute; top: 0; right: 0; width: 200px;">
+        <label for="quantity">Số lượng cần lấy:</label>
+        <input type="number" id="quantity" name="quantity" min="1">
+        <button id="submit">Submit</button>
+    </div>
+
+    <form id="nhapKhoForm" style="position: absolute; top: 70%; left: 50%; transform: translate(-50%, -50%);">
+        <label for="ngayNhap">Ngày nhập kho:</label>
+        <input type="date" id="ngayNhap" name="ngayNhap" required>
+
+        <label for="ngayXuat">Ngày xuất kho:</label>
+        <input type="date" id="ngayXuat" name="ngayXuat" required>
+
+        <label for="HSD">Hạn sử dụng:</label>
+        <input type="date" id="HSD" name="HSD" required>
+
+        <label for="soLuong">Số lượng:</label>
+        <input type="number" id="soLuong" name="soLuong" min="1" required>
+
+        <input type="submit" value="Nhập kho">
+    </form>
+
+</body>
+
+</html>

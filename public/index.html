@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<title>BỆNH VIỆN LTNC</title>
-<link rel="stylesheet" href="./asset/css/style.css">
-<style>
-  Button:hover {
-      background-color: #5B8E2A; /* Change to the color you want when hovered */
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <title>BỆNH VIỆN LTNC</title>
+  <link rel="stylesheet" href="./asset/css/style.css">
+  <style>
+    Button:hover {
+      background-color: #5B8E2A;
+      /* Change to the color you want when hovered */
       color: white;
-  }
-  .Shop {
+    }
+
+    .Shop {
       left: 744px;
       top: 45.50px;
       position: absolute;
@@ -25,46 +29,49 @@
       border: 8px white;
       border-radius: 8px;
       overflow: hidden;
-  }
-  .Shop:hover {
+    }
+
+    .Shop:hover {
       background-color: #426B1F;
       color: white;
-  }
-</style>
+    }
+  </style>
 </head>
+
 <body>
-<div class="container">
-  <header>
-    <h1>BỆNH VIỆN LTNC</h1>
-    <p class="motto">Hết sức để qua môn</p>
-  </header>
-  <div class="main-content">
-    <aside>
-      <nav>
-        <ul>
-          <li><a href="PatientManagement.html">Theo dõi bệnh nhân</a></li>
-          <li><a href="#lich-trinh-bac-si">Lịch trình bác sĩ</a></li>
-          <li><a href="cosovatchat.html">Cơ sở vật chất</a></li>
-          <li><a href="dangkykham.html">Đăng ký khám bệnh</a></li>
-        </ul>
-      </nav>
-    </aside>
-    <section class="login">
-      <form action="#" method="post">
-        <div class="input-group">
-          <label for="user-email">Số điện thoại/Email:</label>
-          <input type="text" id="user-email" name="user-email" required>
-        </div>
-        <div class="input-group">
-          <label for="password">Mật khẩu:</label>
-          <input type="password" id="password" name="password" required>
-        </div>
-        <button id ="reg" type="button" >Đăng nhập</button>
-      </form>
-    </section>
+  <div class="container">
+    <header>
+      <h1>BỆNH VIỆN LTNC</h1>
+      <p class="motto">Hết sức để qua môn</p>
+    </header>
+    <div class="main-content">
+      <aside>
+        <nav>
+          <ul>
+            <li><a href="PatientManagement.html">Theo dõi bệnh nhân</a></li>
+            <li><a href="Calendar.html">Lịch trình bác sĩ</a></li>
+            <li><a href="cosovatchat.html">Cơ sở vật chất</a></li>
+            <li><a href="dangkykham.html">Đăng ký khám bệnh</a></li>
+          </ul>
+        </nav>
+      </aside>
+      <section class="login">
+        <form action="#" method="post">
+          <div class="input-group">
+            <label for="user-email">Số điện thoại/Email:</label>
+            <input type="text" id="user-email" name="user-email" required>
+          </div>
+          <div class="input-group">
+            <label for="password">Mật khẩu:</label>
+            <input type="password" id="password" name="password" required>
+          </div>
+          <button id="reg" type="button">Đăng nhập</button>
+        </form>
+      </section>
+    </div>
   </div>
-</div>
-<button class="Shop" type="button" id="logout">Shop</button>
-<script type="module" src="./asset/js/register.js"></script>
+  <button class="Shop" type="button" id="logout">Shop</button>
+  <script type="module" src="./asset/js/register.js"></script>
 </body>
+
 </html>
